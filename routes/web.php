@@ -12,14 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('navbar');
 });
 
 Auth::routes();
 
+////////////// default
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/edit', 'AccountController@edit')->name('update');
+/////////// Accounts
+Route::get('/edit', 'AccountController@edit')->name('toto');
 Route::post('/update', 'AccountController@update')->name('update');
 
-route::get('/articles', 'ArticleController@show')->name('articles');
+////////////// projects
+route::get('/projects', 'ProjectController@index');
+route::get('/projects/create', 'ProjectController@create');
+route::post('/projects', 'ProjectController@store');
+route::get('/projects/{id}/edit', 'ProjectController@show');
+route::get('/projects/{id}/edit', 'ProjectController@edit');
+route::put('/projects/{id}', 'ProjectController@update');
+route::delete('/projects/{id}', 'ProjectController@delete');
+
