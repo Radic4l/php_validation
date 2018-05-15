@@ -19,4 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/edit', 'AccountController@edit')->name('edit');
+Route::get('/edit', 'AccountController@edit')->name('update');
+Route::post('/update', 'AccountController@update')->name('update');
+
+route::get('/articles', 'ArticleController@show')->name('articles');

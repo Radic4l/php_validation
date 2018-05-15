@@ -10,15 +10,24 @@ class AccountController extends Controller
     {
         return view('home');
     }
-    public function edit(Request $request)
+
+
+
+    public function edit ()
+    {
+        return view ('update');
+    }
+
+    public function update(Request $request)
     {
         $user = Auth::user();
         $user -> firstname = $request -> firstname;
-        $user -> lasttname = $request -> lastname;
+        $user -> lastname = $request -> lastname;
         $user -> email = $request -> email;
-        $user -> firstname = $request -> firstname;
+        $user -> password = bcrypt($request -> password);
+        $user -> save();
 
-        return view('edit');
+        return redirect('home');
     }
 
 }
