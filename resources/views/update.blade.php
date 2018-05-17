@@ -4,17 +4,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Update Profile') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('update') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('Firstname') }}</label>
+                                <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('New Firstname') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="firstname" value="{{ auth::user()->firstname }}" required autofocus>
+                                    <input id="firstname" type="text" class="form-control{{ $errors->has('New firstname') ? ' is-invalid' : '' }}" name="firstname" value="{{ auth::user()->firstname }}" required autofocus>
 
                                     @if ($errors->has('firstname'))
                                         <span class="invalid-feedback">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Laststname') }}</label>
+                                <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('New Laststname') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ auth::user()->lastname }}" required autofocus>
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('New E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ auth::user()->email }}" required>
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>

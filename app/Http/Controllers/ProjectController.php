@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Link;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -20,14 +22,19 @@ class ProjectController extends Controller
         return view ('projects.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createProject()
     {
-        return view ('projects.create');
+       return view ('projects.create');
+    }
+
+    public function valid(Request $request)
+    {
+        //var_dump($request->isMethod('post')); die;
+        $parameters = $request->only(['title', 'description',  Auth::user()]);
+        //$parameters = $request->except(['_token']);
+        //var_dump($parameters); die;
+        Project::create($parameters);
+       return redirect()->route('index.project')->with('success', 'Project was created !');
     }
 
     /**
@@ -39,7 +46,11 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
-        return view('projects.index');
+        //$user = Auth::user();
+       // $user -> nom = $request ->
+       // $project = $request->input('title');
+
+        return view('projects.create');
     }
 
     /**
