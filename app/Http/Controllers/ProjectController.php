@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\DocBlock\Tags\Link;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,17 @@ class ProjectController extends Controller
      */
     public function index()
     {
-       /* $projects = Project::all();
-        $data = ['projects' => $projects];
-*/
-        return view ('projects.index');
+        $projects = Project::all();
+        //$data = ['projects' => $projects];
+        //var_dump(Project::all()); die;
+
+        return view ('projects.index')->with('projects', $projects);
+    }
+
+    public function showProject($id)
+    {
+        $project = Project::find($id);
+        return view('projects.showProject')->with('project', $project);
     }
 
     public function createProject()
@@ -30,10 +38,19 @@ class ProjectController extends Controller
     public function valid(Request $request)
     {
         //var_dump($request->isMethod('post')); die;
-        $parameters = $request->only(['title', 'description',  Auth::user()]);
-        //$parameters = $request->except(['_token']);
+        //$parameters = $request->only(['title', 'description',  Auth::user()]);
+        //$parameter1 = $request->except(['_token']);
+        //$parameter2 = $request->auteur;
         //var_dump($parameters); die;
-        Project::create($parameters);
+        //Project::create($parameter);
+
+        $project =  new Project();
+        $project->auteur = User::value('firstname') . ' ' . User::value('lastname');
+        //Auth::user()->firsname->lastname;
+        $project->nom = $request->nom;
+        $project->descriptif = $request->descriptif;
+        $project->save();
+        //dump($parameter1); die;
        return redirect()->route('index.project')->with('success', 'Project was created !');
     }
 

@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @foreach($projects as $project)
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -10,15 +9,18 @@
                         <div class="card-header">{{ $project->nom }}</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <p> description : {{ $project->descriptif }} <br><br> auteur : {{ $project->auteur }}</p>
+                                <p> description : {{ $project->descriptif }}</p>
+                                <br>
+                                <br>
+                                <p>Auteur :  </p>{{ $project->auteur }}
+
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="{{ route('show.project', ['id' => $project->id])  }}" class="btn btn-info" role="button">View project</a>
+                            <button class="btn btn-info" onclick="history.go(-1);">Back </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-    @endforeach
-@stop
+        </div>
+    @endsection
