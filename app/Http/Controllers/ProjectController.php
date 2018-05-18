@@ -27,7 +27,12 @@ class ProjectController extends Controller
     public function showProject($id)
     {
         $project = Project::find($id);
-        return view('projects.showProject')->with('project', $project);
+        //$project->auteur = $project->user->user_id;
+        dd($project->user->user_id);
+        $data = [
+          'project' => $project,
+        ];
+        return view('projects.showProject', $data);
     }
 
     public function createProject()
@@ -41,11 +46,12 @@ class ProjectController extends Controller
         //$parameters = $request->only(['title', 'description',  Auth::user()]);
         //$parameter1 = $request->except(['_token']);
         //$parameter2 = $request->auteur;
-        //var_dump($parameters); die;
+
         //Project::create($parameter);
 
         $project =  new Project();
-        $project->auteur = User::value('firstname') . ' ' . User::value('lastname');
+        //var_dump($project->User); die;
+        $project->auteur = Auth::user()->id;
         //Auth::user()->firsname->lastname;
         $project->nom = $request->nom;
         $project->descriptif = $request->descriptif;

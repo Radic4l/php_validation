@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password'
     ];
 
     /**
@@ -27,7 +27,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
     function projects() {
-        return $this->belongsTo('App.Project');
+        return $this->hasMany('App\Project');
     }
 }

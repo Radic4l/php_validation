@@ -45,6 +45,7 @@ route::get('/project/{id}',[
     'as' => 'show.project',
     'uses' => 'ProjectController@showProject'
 ]);
+
 route::get('/projects/{id}/edit', 'ProjectController@edit');
 route::put('/projects/{id}', 'ProjectController@update');
 route::delete('/projects/{id}', 'ProjectController@delete');

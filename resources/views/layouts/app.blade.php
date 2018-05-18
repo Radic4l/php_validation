@@ -51,7 +51,10 @@
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('toto') }}">
-                                    {{ __('Modifier') }}
+                                    {{ __('Edit Profile') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('project.create') }}">
+                                    {{ __('Create Project') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
