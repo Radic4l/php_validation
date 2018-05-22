@@ -10,7 +10,7 @@
                         <div class="card-header">{{ $project->nom }}</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <p> description : {{ $project->descriptif }} <br><br> auteur : {{ $project->auteur }}</p>
+                                <p> description : {{ $project->descriptif }} <br><br> auteur : {{ $project->getUserAuteur() }}</p>
                             </div>
                         </div>
                         <div class="card-footer">

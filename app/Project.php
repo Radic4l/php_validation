@@ -12,6 +12,10 @@ class Project extends Model
         return $this->belongsTo('App\User');
     }
     public function getUserAuteur() {
-        return $this->user->firstname;
+        return $this->user->firstname . ' ' . $this->user->lastname;
+        //return $this->user::all('firstname', 'lastname');
+    }
+    public function getProjectDates(){
+        return $this->getCreatedAtColumn();
     }
 }

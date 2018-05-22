@@ -29,8 +29,7 @@ route::get('/projects', [
     'as' => 'index.project',
     'uses' => 'ProjectController@index'
 ]);
-//route::get('/projects/create', 'ProjectController@create');
-
+/////////////////////////////create
 route::get('/projects/create',[
     'as' => 'project.create',
     'uses' => 'ProjectController@createProject'
@@ -40,17 +39,26 @@ route::post('/projects/valid',[
     'as' => 'valid.project',
     'uses' => 'ProjectController@valid'
 ]);
-
+////////////////////////////////////
 route::get('/project/{id}',[
     'as' => 'show.project',
     'uses' => 'ProjectController@showProject'
 ]);
 
-route::get('/projects/{id}/edit', 'ProjectController@edit');
-route::put('/projects/{id}', 'ProjectController@update');
+///////////////////////edit
+route::get('/project/{id}/edit', [
+    'as' => 'edit.project',
+    'uses' => 'ProjectController@edit'
+]);
+
+route::put('/projects/update', [
+    'as' => 'update.project',
+    'uses' => 'ProjectController@update'
+]);
+////////////////////////////
 route::delete('/projects/{id}', 'ProjectController@delete');
 
-
+/////////// others
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

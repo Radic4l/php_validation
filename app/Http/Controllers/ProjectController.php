@@ -27,8 +27,8 @@ class ProjectController extends Controller
     public function showProject($id)
     {
         $project = Project::find($id);
-        //$project->auteur = $project->user->user_id;
-        dd($project->user->user_id);
+        //$project->user_id = $project->user->user_id;
+        //dd($project->user->user_id);
         $data = [
           'project' => $project,
         ];
@@ -51,7 +51,7 @@ class ProjectController extends Controller
 
         $project =  new Project();
         //var_dump($project->User); die;
-        $project->auteur = Auth::user()->id;
+        $project->user_id = Auth::user()->id;
         //Auth::user()->firsname->lastname;
         $project->nom = $request->nom;
         $project->descriptif = $request->descriptif;
@@ -60,32 +60,6 @@ class ProjectController extends Controller
        return redirect()->route('index.project')->with('success', 'Project was created !');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        //$user = Auth::user();
-       // $user -> nom = $request ->
-       // $project = $request->input('title');
-
-        return view('projects.create');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view ('projects.show');
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,7 +69,11 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        return view ('projects.edit');
+        $project = Project::find($id);
+        $data = [
+            "project" => $project,
+        ];
+        return view ('projects.edit', $data);
     }
 
     /**
@@ -107,8 +85,14 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        return view ('projects.index');
+        //$project = Project::find($id);
+        //$project->user_id = Auth::user()->id;
+        //$project -> nom = $request->nom;
+        //$project -> descriptif = $request->descriptif;
+        //dd($project);
+        //$project ->save();
+        return redirect()->route('index.project')->with('success', 'Project was updated !');
+        //return redirect(route('projects.index'));
     }
 
     /**
