@@ -27,17 +27,20 @@ Route::post('/update', 'AccountController@update')->name('update');
 ////////////// projects
 route::get('/projects', [
     'as' => 'index.project',
-    'uses' => 'ProjectController@index'
+    'uses' => 'ProjectController@index',
+
 ]);
 /////////////////////////////create
 route::get('/projects/create',[
     'as' => 'project.create',
-    'uses' => 'ProjectController@createProject'
+    'uses' => 'ProjectController@createProject',
+    'middleware' => 'auth'
 ]);
 
 route::post('/projects/valid',[
     'as' => 'valid.project',
-    'uses' => 'ProjectController@valid'
+    'uses' => 'ProjectController@valid',
+    'middleware' => 'auth'
 ]);
 ////////////////////////////////////
 route::get('/project/{id}',[
@@ -48,10 +51,11 @@ route::get('/project/{id}',[
 ///////////////////////edit
 route::get('/project/{id}/edit', [
     'as' => 'edit.project',
-    'uses' => 'ProjectController@edit'
+    'uses' => 'ProjectController@edit',
+    'middleware' => 'auth'
 ]);
 
-route::put('/projects/update', [
+route::post('/projects/update/{id}', [
     'as' => 'update.project',
     'uses' => 'ProjectController@update'
 ]);
@@ -62,3 +66,4 @@ route::delete('/projects/{id}', 'ProjectController@delete');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

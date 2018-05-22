@@ -49,15 +49,15 @@ class ProjectController extends Controller
 
         //Project::create($parameter);
 
-        $project =  new Project();
-        //var_dump($project->User); die;
+        $project =  new Project();   //var_dump($project->User); die;
         $project->user_id = Auth::user()->id;
         //Auth::user()->firsname->lastname;
         $project->nom = $request->nom;
         $project->descriptif = $request->descriptif;
         $project->save();
         //dump($parameter1); die;
-       return redirect()->route('index.project')->with('success', 'Project was created !');
+        return redirect()->route('index.project')->with('success', 'Project was created !');
+
     }
 
 
@@ -70,10 +70,15 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
+        if($project->user_id === Auth::user()->id){
+
         $data = [
             "project" => $project,
         ];
         return view ('projects.edit', $data);
+        } else {
+            return view('index.project');
+        }
     }
 
     /**
@@ -85,13 +90,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$project = Project::find($id);
-        //$project->user_id = Auth::user()->id;
-        //$project -> nom = $request->nom;
-        //$project -> descriptif = $request->descriptif;
+        $project = Project::find($id);
+
+        if($project->user_id === Auth::user()->id){
+        $project -> nom = $request->nom;
+        $project -> descriptif = $request->descriptif;
         //dd($project);
-        //$project ->save();
+        $project ->save();
         return redirect()->route('index.project')->with('success', 'Project was updated !');
+        }else {
+            return redirect()->route('index.project')->with('error', 'Le projet n\'a pas été mis à jour!');
+        }
+
         //return redirect(route('projects.index'));
     }
 

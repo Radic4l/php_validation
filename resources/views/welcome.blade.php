@@ -81,7 +81,14 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+
                 </div>
+                <ul class="navbar-nav mr-auto">
+                    <nav class="nav nav-pills nav-justified">
+                        <a class="nav-item nav-link" href="{{ route('index.project') }}">Projects</a>
+                        <a class="nav-item nav-link" href="#">Admin</a>
+                    </nav>
+                </ul>
             </div>
         </div>
     </body>

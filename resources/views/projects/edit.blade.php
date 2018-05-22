@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        {{ Form::open(array('route' => 'update.project')) }}
+                        {{ Form::open(array('route' => array('update.project', $project->id ))) }}
                         <div class="form-group">
                             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                             {!! Form::text('nom', $project->nom, ['class' => 'form-control']) !!}

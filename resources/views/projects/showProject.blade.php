@@ -22,13 +22,16 @@
                                 <div class="col-md-6">
                                     <p class="text-right">Date de Création : {{ $project->created_at }}</p>
                                 </div>
-
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-info" onclick="history.go(-1);">Back</button>
-                            <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>
+                            @if(Auth::user())
+                                @if(Auth::user()->id === $project->user_id)
+                                    <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>
