@@ -77,7 +77,7 @@ class ProjectController extends Controller
         ];
         return view ('projects.edit', $data);
         } else {
-            return view('index.project');
+            return redirect()->route('index.project')->with('error', 'Vous n\'êtes pas l\'auteur de ce projet ! IMPOSTEUR !!!');
         }
     }
 
