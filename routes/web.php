@@ -60,10 +60,14 @@ route::post('/projects/update/{id}', [
     'uses' => 'ProjectController@update'
 ]);
 ////////////////////////////
-route::delete('/projects/{id}', 'ProjectController@delete');
+route::delete('/delete/{id}', [
+    'as' => 'delete.project',
+    'uses' => 'ProjectController@destroy'
+]);
 
 /////////// others
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 

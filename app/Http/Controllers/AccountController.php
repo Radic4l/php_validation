@@ -27,7 +27,7 @@ class AccountController extends Controller
         $user -> password = bcrypt($request -> password);
         $user -> save();
 
-        return redirect('home');
+        return redirect(route('index.project'))->with('success', 'Your profile was updated');
     }
 
 }

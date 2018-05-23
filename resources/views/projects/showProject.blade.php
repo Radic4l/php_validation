@@ -26,12 +26,17 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-info" onclick="history.go(-1);">Back</button>
-                            @if(Auth::user())
-                                @if(Auth::user()->id === $project->user_id)
-                                    <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>
+                            <div class="row">
+                                <button class="btn btn-info" onclick="history.go(-1);">Back</button>
+                                @if(Auth::user())
+                                    @if(Auth::user()->id === $project->user_id)
+                                        <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>
+                                    {{ Form::open(array('route' => array('delete.project', $project->id))) }}
+                                    {{ method_field('delete') }}
+                                        {!! Form::submit('Delete project', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    @endif
                                 @endif
-                            @endif
                         </div>
                     </div>
                 </div>
