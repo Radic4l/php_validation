@@ -64,15 +64,23 @@ route::delete('/delete/{id}', [
     'as' => 'delete.project',
     'uses' => 'ProjectController@destroy'
 ]);
+///////////////////////////////// end Project
+///
+///  Admin
 
 route::get('/admin', [
     'as' => 'index.admin',
     'uses' => 'AccountController@showUsers',
 
 ]);
+route::delete( 'admin/{id}', [
+    'as' => 'delete.user',
+    'uses' => 'AccountController@destroy',
+]);
+
 route::get('/profile/{id}',[
     'as' => 'show.profile',
-    'uses' => 'AccountController@showProfile'
+    'uses' => 'AccountController@showProfile',
 ]);
 /////////// others
 Auth::routes();

@@ -39,6 +39,10 @@ class ProjectController extends Controller
 
     public function valid(Request $request)
     {
+        $this->validate($request, [
+            'nom' => 'required',
+            'descriptif' => 'required',
+        ]);
         //var_dump($request->isMethod('post')); die;
         //$parameters = $request->only(['title', 'description',  Auth::user()]);
         //$parameter1 = $request->except(['_token']);
@@ -68,13 +72,15 @@ class ProjectController extends Controller
         $project = Project::find($id);
         if($project->user_id === Auth::user()->id){
 
-        $data = [
-            "project" => $project,
-        ];
-        return view ('projects.edit', $data);
-        } else {
-            return redirect()->route('index.project')->with('error', 'Vous n\'êtes pas l\'auteur de ce projet ! IMPOSTEUR !!!');
+            $data = [
+                "project" => $project,
+            ];
+            return view ('projects.edit', $data);
+
         }
+
+        return redirect()->route('index.project')->with('error', 'Vous n\'êtes pas l\'auteur de ce projet ! IMPOSTEUR !!!');
+
     }
 
     /**
@@ -89,14 +95,14 @@ class ProjectController extends Controller
         $project = Project::find($id);
 
         if($project->user_id === Auth::user()->id){
-        $project -> nom = $request->nom;
-        $project -> descriptif = $request->descriptif;
-        //dd($project);
-        $project ->save();
-        return redirect()->route('index.project')->with('success', 'Project was updated !');
-        }else {
-            return redirect()->route('index.project')->with('error', 'Le projet n\'a pas été mis à jour!');
+            $project -> nom = $request->nom;
+            $project -> descriptif = $request->descriptif;
+            //dd($project);
+            $project ->save();
+            return redirect()->route('index.project')->with('success', 'Project was updated !');
         }
+        return redirect()->route('index.project')->with('error', 'Le projet n\'a pas été mis à jour!');
+
 
         //return redirect(route('projects.index'));
     }

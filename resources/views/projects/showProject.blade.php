@@ -27,10 +27,11 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                <button class="btn btn-info" onclick="history.go(-1);">Back</button>
+                                {{--&nbsp; is used for make a space in html code--}}
+                                <button class="btn btn-info" onclick="history.go(-1);">Back</button>&nbsp;
                                 @if(Auth::user())
                                     @if(Auth::user()->id === $project->user_id)
-                                        <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>
+                                        <a href="{{ route('edit.project', ['id' => $project->id])  }}" class="btn btn-dark" role="button">Edit project</a>&nbsp;
                                     {{ Form::open(array('route' => array('delete.project', $project->id))) }}
                                     {{ method_field('delete') }}
                                         {!! Form::submit('Delete project', ['class' => 'btn btn-danger']) !!}

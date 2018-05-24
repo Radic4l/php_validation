@@ -38,7 +38,7 @@
                 <ul class="navbar-nav mr-auto">
                     <nav class="nav nav-pills nav-justified">
                         <a class="nav-item nav-link" href="{{ route('index.project') }}">Projects</a>
-                        <a class="nav-item nav-link" href="#">Admin</a>
+                        <a class="nav-item nav-link" href="{{ route('index.admin') }}">Admin</a>
                     </nav>
                 </ul>
 
@@ -80,11 +80,11 @@
 
     <main class="py-4">
         @if(Session::has('success'))
-            <div class="alert alert-success">{{Session::get('success')}}</div>
+            <div class="alert alert-success text-center">{{Session::get('success')}}</div>
             @endif
 
             @if(Session::has('error'))
-                <div class="alert alert-danger">{{Session::get('error')}}</div>
+                <div class="alert alert-danger text-center">{{Session::get('error')}}</div>
             @endif
         @yield('content')
     </main>

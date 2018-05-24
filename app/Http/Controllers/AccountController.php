@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -46,10 +47,16 @@ class AccountController extends Controller
     public function showProfile($id)
     {
         $profile = User::find($id);
-
         $data = [
             'profile' => $profile,
         ];
         return view('admin.showProfile', $data);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('index.project')->with('success', 'User and her projects was deleted !');
     }
 }
