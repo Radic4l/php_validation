@@ -21,4 +21,4 @@
             </div>
             <br>
     @endforeach
-@stop
+@endsection

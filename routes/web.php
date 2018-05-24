@@ -65,6 +65,15 @@ route::delete('/delete/{id}', [
     'uses' => 'ProjectController@destroy'
 ]);
 
+route::get('/admin', [
+    'as' => 'index.admin',
+    'uses' => 'AccountController@showUsers',
+
+]);
+route::get('/profile/{id}',[
+    'as' => 'show.profile',
+    'uses' => 'AccountController@showProfile'
+]);
 /////////// others
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

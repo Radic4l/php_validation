@@ -18,8 +18,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        //$data = ['projects' => $projects];
-        //var_dump(Project::all()); die;
 
         return view ('projects.index')->with('projects', $projects);
     }
@@ -27,8 +25,7 @@ class ProjectController extends Controller
     public function showProject($id)
     {
         $project = Project::find($id);
-        //$project->user_id = $project->user->user_id;
-        //dd($project->user->user_id);
+
         $data = [
           'project' => $project,
         ];
@@ -55,7 +52,6 @@ class ProjectController extends Controller
         $project->nom = $request->nom;
         $project->descriptif = $request->descriptif;
         $project->save();
-        //dump($parameter1); die;
         return redirect()->route('index.project')->with('success', 'Project was created !');
 
     }

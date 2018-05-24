@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section()
+@section('content')
     <h1>Admin panel</h1><br>
 
     <h4>user list :</h4>
@@ -21,6 +21,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <br>
     @endforeach
 
