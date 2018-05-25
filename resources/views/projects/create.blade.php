@@ -10,8 +10,13 @@
                         {{ Form::open(array('route' => 'valid.project')) }}
                         <div class="form-group">
                             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-                            {!! Form::text('nom', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('nom', null, ['class' => 'form-control ' . ( $errors->has('nom') ? ' is-invalid' : '')]) !!}
                         </div>
+                                @if ($errors->has('nom'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('nom') }}</strong>
+                                    </span>
+                                @endif
                         <div class="form-group">
                             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
                             {!! Form::textarea('descriptif', null, ['class' => 'form-control']) !!}
